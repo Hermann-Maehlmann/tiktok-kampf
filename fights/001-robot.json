@@ -1,0 +1,24 @@
+{
+ "id": "001-robot",
+ "title": { "sub": "MAN VS MACHINE · 12 ROUNDS" },
+ "red": { "name": "THE ROBOT",
+   "look": { "id": "robot", "body": "giant", "skin": "robot", "hair": "bald", "eyeGlow": "#ff2020", "hat": "antenna", "trunksText": "T-800" },
+   "stats": ["WEIGHT: 800 KG OF STEEL", "WEAKNESS: STAIRS"] },
+ "blue": { "name": "THE HUMAN",
+   "look": { "id": "human", "body": "human", "skin": "tan", "hair": "short", "trunksText": "HUMAN" },
+   "stats": ["FUEL: COFFEE", "SECRET WEAPON: TURNING IT OFF AND ON"] },
+ "outro": [["THE ROBOT", "red"], ["0 WINS", "white"], ["HUMANS", "blue"], ["1 WIN… FOR NOW", "white"]],
+ "vo": {
+  "l01": "Tonight... flesh versus metal. Humanity's last stand.",
+  "l02": "In the red corner... the robot! Eight hundred kilos of steel. It never sleeps, never sweats, and it has read every boxing book ever written.",
+  "l03": "And in the blue corner... the human! Runs on coffee and spite, and has never once read the manual.",
+  "l04": "Fun fact: that robot calculates a million punches per second.",
+  "l05": "Ohh! Error four-oh-four: mercy not found.",
+  "l06": "But humans have something robots never had... pure chaos.",
+  "l08": "Down goes the robot!",
+  "l10": "Your winner... the human!",
+  "l11": "Somewhere, a toaster just filed a complaint. Humans one, machines zero... for now."
+ },
+ "caption": "Humanity vs. the machine 🤖🥊 Who should fight next? 👇",
+ "hashtags": ["#boxing", "#robot", "#ai", "#animation", "#fyp", "#whowouldwin"]
+}

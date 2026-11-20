@@ -1,0 +1,187 @@
+{
+ "id": "v3",
+ "voiceDir": "voice",
+ "title": {
+  "sub": "WORLD TITLE · 12 ROUNDS"
+ },
+ "red": {
+  "name": "HOMO ERECTUS",
+  "look": {
+   "id": "erectus",
+   "body": "brute",
+   "skin": "dark",
+   "hair": "wild",
+   "beard": true,
+   "chestHair": true,
+   "morph": 1,
+   "outfit": "pelt",
+   "feet": "bare",
+   "iris": [
+    "#3a2412",
+    "#24150a"
+   ]
+  },
+  "stats": [
+   "EXPERIENCE: 1.9 MILLION YEARS",
+   "RECORD: 412 – 0 (VS. MAMMOTHS)"
+  ]
+ },
+ "blue": {
+  "name": "HOMO SAPIENS",
+  "look": {
+   "id": "sapiens",
+   "body": "human",
+   "skin": "light",
+   "hair": "short",
+   "trunksText": "SAPIENS"
+  },
+  "stats": [
+   "EXPERIENCE: 300,000 YEARS",
+   "SECRET WEAPON: BIGGER BRAIN"
+  ]
+ },
+ "outro": [
+  [
+   "HOMO ERECTUS",
+   "red"
+  ],
+  [
+   "~1,900,000 YEARS",
+   "white"
+  ],
+  [
+   "HOMO SAPIENS",
+   "blue"
+  ],
+  [
+   "300,000 YEARS… SO FAR",
+   "white"
+  ]
+ ],
+ "vo": {
+  "l01": "Tonight... two million years of evolution, settled in one ring.",
+  "l02": "In the red corner... Homo erectus! He walked the Earth for almost two million years. The first human to leave Africa, and probably the first to cook with fire.",
+  "l03": "And in the blue corner... Homo sapiens! Only 300,000 years old, but with a brain almost 50% bigger.",
+  "l04": "Fun fact: erectus had shoulders built for throwing. You do not want to eat that right hand.",
+  "l05": "Ohh! This guy survived ice ages and saber-toothed cats.",
+  "l06": "But sapiens has something erectus never had... a plan.",
+  "l08": "Down goes erectus!",
+  "l10": "Your winner... Homo sapiens!",
+  "l11": "But remember: erectus lasted almost two million years. We've made it to 300,000. Check back in a million."
+ },
+ "cues": {
+  "l01": [
+   [
+    0,
+    4.35,
+    "Tonight... two million years of evolution, settled in one ring."
+   ]
+  ],
+  "l02": [
+   [
+    0,
+    1.09,
+    "In the red corner..."
+   ],
+   [
+    1.09,
+    2.48,
+    "Homo erectus!"
+   ],
+   [
+    2.48,
+    5.19,
+    "He walked the Earth for almost two million years."
+   ],
+   [
+    5.19,
+    9.66,
+    "The first human to leave Africa, and probably the first to cook with fire."
+   ]
+  ],
+  "l03": [
+   [
+    0,
+    1.41,
+    "And in the blue corner..."
+   ],
+   [
+    1.41,
+    2.88,
+    "Homo sapiens!"
+   ],
+   [
+    2.88,
+    7.93,
+    "Only 300,000 years old, but with a brain almost 50% bigger."
+   ]
+  ],
+  "l04": [
+   [
+    0,
+    3.61,
+    "Fun fact: erectus had shoulders built for throwing."
+   ],
+   [
+    3.61,
+    5.37,
+    "You do not want to eat that right hand."
+   ]
+  ],
+  "l05": [
+   [
+    0,
+    0.61,
+    "Ohh!"
+   ],
+   [
+    0.61,
+    4.47,
+    "This guy survived ice ages and saber-toothed cats."
+   ]
+  ],
+  "l06": [
+   [
+    0,
+    3.92,
+    "But sapiens has something erectus never had... a plan."
+   ]
+  ],
+  "l08": [
+   [
+    0,
+    1.2,
+    "Down goes erectus!"
+   ]
+  ],
+  "l10": [
+   [
+    0,
+    0.81,
+    "Your winner..."
+   ],
+   [
+    0.81,
+    2.29,
+    "Homo sapiens!"
+   ]
+  ],
+  "l11": [
+   [
+    0,
+    3.94,
+    "But remember: erectus lasted almost two million years."
+   ],
+   [
+    3.94,
+    5.84,
+    "We've made it to 300,000."
+   ],
+   [
+    5.84,
+    7.05,
+    "Check back in a million."
+   ]
+  ]
+ }
+}

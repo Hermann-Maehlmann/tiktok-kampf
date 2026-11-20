@@ -1,0 +1,8 @@
+node_modules/
+build/
+stills/
+preview/
+frames/
+audio3.wav
+events.json
+*.png
