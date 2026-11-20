@@ -23,7 +23,7 @@ Format: 3D-Boxkampf ~68 s, „Mensch gegen irgendwas“. Englische Stimme (edge-
 5. **Ablegen**: `bash autopilot/host.sh upload build/<id>/<id>.mp4` → öffentliche URL.
 6. **In Metricool einplanen** (`createScheduledPost`)
    - Marke: **8253235** („fight night“, TikTok @daily.fight-night, Zeitzone Europe/Berlin).
-   - Uhrzeit: **19:00 Europe/Berlin** am selben Tag (ist es schon nach 18:40, dann am nächsten Tag 19:00).
+   - Uhrzeit: **19:00 Europe/Berlin** am selben Tag (ist es schon nach 18:40, dann am nächsten Tag 19:00). Ist an diesem Tag schon ein Post eingeplant (`getScheduledPosts`), den nächsten Tag ohne Post nehmen, höchstens 3 Tage im Voraus; sind alle belegt, nichts einplanen und melden.
    - `info`: `{"text": <Caption>, "providers":[{"network":"tiktok"}], "media":[<URL>], "publicationDate":{"dateTime":"YYYY-MM-DDT19:00:00","timezone":"Europe/Berlin"}, "autoPublish": true, "draft": <MODUS>, "tiktokData":{"privacyOption":"PUBLIC_TO_EVERYONE","isAigc":false,"title":<Titel>}, "firstCommentText":"Who should fight next? 👇", "descendants":[], "shortener":false, "smartLinkData":{"ids":[]}, "hasNotReadNotes":false, "mediaAltText":[]}`
    - **MODUS (Hermann 18.11.2026: sofort automatisch):** `draft: false`, wenn Vorschau (Schritt 3) und Abnahme (Schritt 4) bestanden sind. Nur wenn nach 3 Runden noch ein klarer Fehler bleibt: `draft: true`, Datum nächster Tag 13:00, und in der Zusammenfassung sagen warum.
    - Caption (Englisch, max. 150 Zeichen ohne Hashtags): Hook + Frage an die Zuschauer, dann 4–5 Hashtags (#boxing #whowouldwin + Nische), dann die Pflichtzeile `Head scan: Lee Perry-Smith / Infinite-Realities (CC BY 3.0)`.
