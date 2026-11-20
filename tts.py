@@ -9,7 +9,7 @@ import json, os, re, subprocess, sys, wave
 import numpy as np
 
 VOICE = os.environ.get('VOICE', 'en-US-AndrewMultilingualNeural')
-RATES = [8, 14, 20, 26]  # percent faster; v3 used +8%
+RATES = [16, 21, 26, 31]  # percent faster (Hermann 20.11.2026: a bit faster than v3's +8%)
 COMMON = {'l12': "Let's see that again.", 'l13': "Who should fight next? Tell me in the comments!"}
 SR = 48000
 here = os.path.dirname(os.path.abspath(__file__))
@@ -44,6 +44,7 @@ def speak(key, text, slot, outdir):
         if dur <= slot['max']:
             write_wav(os.path.join(outdir, key + '.wav'), x)
             print(f'{key}: {dur:.2f}s / max {slot["max"]}s (+{rate}%)')
+            if dur < .75 * slot['max'] and key not in COMMON: print(f'  SHORT: {key} fills only {dur / slot["max"]:.0%} of its slot. Add a fact or joke so the video has no dead air.')
             return cues
     sys.exit(f'TOO LONG: {key} is {dur:.2f}s even at +{RATES[-1]}% (max {slot["max"]}s). Shorten: "{text}"')
 

@@ -14,7 +14,8 @@ Format: 3D-Boxkampf ~68 s, „Mensch gegen irgendwas“. Englische Stimme (edge-
    - Mischung über die Woche: ~50 % Gegenstände (`look.object`: toaster, fridge, cone, trashcan, washer, cactus, burger), ~30 % Typen/Fantasie (Roboter, Zombie, Wikinger, Teufel, König, Alien, „Der Chef“, „Montagmorgen“ …), ~20 % Tiere (Gorilla, Bär … über `skin: fur_dark/fur_brown`, `morph`, `hat: bearEars/catEars/bunnyEars`).
    - **Niemals echte Personen** (Politiker, Streamer, Promis), keine echten Marken oder Logos (Hermann 18.11.2026, TikTok-Regeln + Recht am eigenen Bild). Nur Typen ohne Namen.
    - Der Mensch steht meist in Blau und gewinnt. Etwa jedes 5. Video ein Überraschungssieg des Gegners: dann der Gegner in Blau, der Mensch in Rot.
-   - Witzig, kurz, englisch. Stats und Outro mit Pointe. `l11` ist die stärkste Pointe. Jede `vo`-Zeile unter ihrer Maximallänge (≈ 2,8 Wörter pro Sekunde).
+   - **Stimme schneller, mehr Inhalt (Hermann 20.11.2026):** Jede `vo`-Zeile füllt 80–95 % ihres Slots (≈ 3,1 Wörter pro Sekunde), auch `l12` (Replay-Kommentar). Meldet `tts.py` „SHORT“, die Zeile mit einem Fakt oder Witz verlängern und `make_video.sh` neu starten.
+   - Witzig, englisch. Stats und Outro mit Pointe. `l11` ist die stärkste Pointe. Jede `vo`-Zeile unter ihrer Maximallänge.
    - Datei `fights/<nr>-<slug>.json` (`nr` = laufende Nummer, 3-stellig).
 3. **Vorschau prüfen**: `FIGHT=fights/<datei>.json node render.js preview/<id> stills 2 7 17 28.5 40.3 49 60.6 66.8` und jedes Bild ansehen: Gegner erkennbar und lustig? Augen frei (nichts von Hut/Helm verdeckt)? Texte lesbar, nichts abgeschnitten? Sonst Look ändern und neu prüfen (max. 3 Runden).
 4. **Rendern**: `./make_video.sh fights/<datei>.json` (Stimme → Ton → Bilder → Video, ca. 35–45 Min, im Hintergrund starten).

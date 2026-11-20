@@ -37,7 +37,7 @@ export function replayV(a) { for (let i = 1; i < RWARP.length; i++) if (a <= RWA
 // voice-over slots: start time in the video + max length (seconds)
 export const VO_SLOTS = {
   l01: { t: .3, max: 4.4 }, l02: { t: 5.0, max: 9.9 }, l03: { t: 15.3, max: 8.0 }, l04: { t: 24.0, max: 5.2 }, l05: { t: 29.3, max: 4.3 },
-  l06: { t: 33.7, max: 4.6 }, l08: { t: 42.9, max: 2.6 }, l10: { t: 48.3, max: 2.2 }, l11: { t: 50.6, max: 7.6 }, l12: { t: 58.5, max: 1.8 }, l13: { t: 65.5, max: 2.8 },
+  l06: { t: 33.7, max: 4.6 }, l08: { t: 42.9, max: 2.6 }, l10: { t: 48.3, max: 2.2 }, l11: { t: 50.6, max: 7.6 }, l12: { t: 58.5, max: 5.2 }, l13: { t: 65.5, max: 2.8 },
 };
 
 // ---------------- root paths (world) ----------------
