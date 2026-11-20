@@ -6,3 +6,6 @@ frames/
 audio3.wav
 events.json
 *.png
+__pycache__/
+voice/**/*.mp3
+voice/**/*.vtt
