@@ -22,7 +22,7 @@ Format: 3D-Boxkampf ~68 s, „Mensch gegen irgendwas“. Englische Stimme (edge-
    - Abnahme: `ffprobe` Dauer ≈ 68,5 s. 8 Bilder ziehen (`ffmpeg -i build/<id>/<id>.mp4 -vf "fps=8/68.5,scale=270:-1,tile=8x1" -frames:v 1 check.png`) und ansehen. Kaputt/schwarz → nicht posten, melden.
 5. **Ablegen**: `bash autopilot/host.sh upload build/<id>/<id>.mp4` → öffentliche URL.
 6. **In Metricool einplanen** (`createScheduledPost`)
-   - Marke: **BLOG_ID_TBD** (Kampf-Kanal, Zeitzone Europe/Berlin).
+   - Marke: **8253235** („fight night“, TikTok @daily.fight-night, Zeitzone Europe/Berlin).
    - Uhrzeit: **19:00 Europe/Berlin** am selben Tag (ist es schon nach 18:40, dann am nächsten Tag 19:00).
    - `info`: `{"text": <Caption>, "providers":[{"network":"tiktok"}], "media":[<URL>], "publicationDate":{"dateTime":"YYYY-MM-DDT19:00:00","timezone":"Europe/Berlin"}, "autoPublish": true, "draft": <MODUS>, "tiktokData":{"privacyOption":"PUBLIC_TO_EVERYONE","isAigc":false,"title":<Titel>}, "firstCommentText":"Who should fight next? 👇", "descendants":[], "shortener":false, "smartLinkData":{"ids":[]}, "hasNotReadNotes":false, "mediaAltText":[]}`
    - **MODUS (Hermann 18.11.2026: sofort automatisch):** `draft: false`, wenn Vorschau (Schritt 3) und Abnahme (Schritt 4) bestanden sind. Nur wenn nach 3 Runden noch ein klarer Fehler bleibt: `draft: true`, Datum nächster Tag 13:00, und in der Zusammenfassung sagen warum.
