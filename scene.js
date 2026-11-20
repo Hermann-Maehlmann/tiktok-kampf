@@ -27,7 +27,7 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure
 const glCanvas = renderer.domElement;
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(40, W / H, .05, 200);
-const world = buildWorld(scene);
+const world = buildWorld(scene, { mat: FIGHT.ring?.mat, apron: FIGHT.ring?.apron || `${FIGHT.red.name.replace(/^THE /, '')}  vs  ${FIGHT.blue.name.replace(/^THE /, '')}` });
 
 const E = new Fighter(SPECIES.erectus), S = new Fighter(SPECIES.sapiens);
 scene.add(E.group, S.group);

@@ -8,7 +8,9 @@ function tex(w, h, draw, srgb = true) {
 
 export const RING = { half: 3.1, floor: 0 };
 
-export function buildWorld(scene) {
+// labels: { mat: [big, middle, small], apron: 'RED vs BLUE' } (per fight, see scene.js)
+export function buildWorld(scene, labels = {}) {
+  const L = { mat: labels.mat || ['FIGHT NIGHT', 'WORLD TITLE FIGHT', '@DAILY.FIGHT-NIGHT'], apron: labels.apron || 'FIGHT NIGHT' };
   const W = {};
   scene.background = new THREE.Color(0x020204);
   scene.fog = new THREE.FogExp2(0x07080d, .045);
@@ -22,9 +24,9 @@ export function buildWorld(scene) {
     g.save(); g.translate(w / 2, h / 2);
     g.strokeStyle = 'rgba(150,20,25,.85)'; g.lineWidth = 26; g.beginPath(); g.arc(0, 0, 430, 0, 6.28); g.stroke();
     g.strokeStyle = 'rgba(20,40,120,.8)'; g.lineWidth = 10; g.beginPath(); g.arc(0, 0, 395, 0, 6.28); g.stroke();
-    g.fillStyle = 'rgba(25,25,30,.9)'; g.textAlign = 'center'; g.font = '900 120px IDK'; g.fillText('EVOLUTION', 0, -10);
-    g.font = '900 64px IDK'; g.fillStyle = 'rgba(150,20,25,.9)'; g.fillText('WORLD TITLE FIGHT', 0, 80);
-    g.font = '700 46px IB'; g.fillStyle = 'rgba(25,25,30,.7)'; g.fillText('2,000,000 B.C.', 0, 150);
+    g.fillStyle = 'rgba(25,25,30,.9)'; g.textAlign = 'center'; g.font = '900 120px IDK'; g.fillText(L.mat[0], 0, -10, 760);
+    g.font = '900 64px IDK'; g.fillStyle = 'rgba(150,20,25,.9)'; g.fillText(L.mat[1], 0, 80, 720);
+    g.font = '700 46px IB'; g.fillStyle = 'rgba(25,25,30,.7)'; g.fillText(L.mat[2], 0, 150, 640);
     g.restore();
     // corner tints
     g.fillStyle = 'rgba(160,20,25,.25)'; g.beginPath(); g.moveTo(0, 0); g.lineTo(420, 0); g.lineTo(0, 420); g.fill();
@@ -41,7 +43,7 @@ export function buildWorld(scene) {
     g.fillStyle = '#0c0c10'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#b3121b'; g.fillRect(0, 0, w, 14);
     g.font = '900 120px IDB'; g.fillStyle = '#e9e2d0'; g.textAlign = 'center';
-    g.fillText('ERECTUS  vs  SAPIENS', w / 2, 170);
+    g.fillText(L.apron, w / 2, 170, w - 80);
   });
   const skirt = new THREE.Mesh(new THREE.BoxGeometry(half * 2 + .7, 1.1, half * 2 + .7), new THREE.MeshStandardMaterial({ map: skirtTex, roughness: .6 }));
   skirt.position.y = -.68; scene.add(skirt);
