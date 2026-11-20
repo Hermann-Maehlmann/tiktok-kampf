@@ -5,7 +5,7 @@ usage: python3 tts.py fights/<id>.json
 Needs: edge-tts (pip install edge-tts), ffmpeg, numpy, and events.json (node events.mjs).
 Each line has a slot with a maximum length; a line that is too long is re-spoken faster,
 and if it still does not fit the script stops so the text can be shortened."""
-import json, os, re, subprocess, sys, wave
+import json, os, re, subprocess, sys, time, wave
 import numpy as np
 
 VOICE = os.environ.get('VOICE', 'en-US-AndrewMultilingualNeural')
@@ -16,8 +16,13 @@ here = os.path.dirname(os.path.abspath(__file__))
 
 
 def synth(text, rate, base):
-    subprocess.run(['edge-tts', '--voice', VOICE, f'--rate=+{rate}%', '--text', text,
-                    '--write-media', base + '.mp3', '--write-subtitles', base + '.vtt'], check=True, capture_output=True)
+    for attempt in range(8):  # the TTS service drops connections now and then (NoAudioReceived)
+        r = subprocess.run(['edge-tts', '--voice', VOICE, f'--rate=+{rate}%', '--text', text,
+                            '--write-media', base + '.mp3', '--write-subtitles', base + '.vtt'], capture_output=True, text=True)
+        if r.returncode == 0: break
+        print(f'edge-tts failed (try {attempt + 1}): {r.stderr.strip().splitlines()[-1:]}', file=sys.stderr); time.sleep(3 * (attempt + 1))
+    else:
+        sys.exit('edge-tts keeps failing')
     pcm = subprocess.run(['ffmpeg', '-v', 'error', '-i', base + '.mp3', '-ar', str(SR), '-ac', '1', '-f', 's16le', '-'],
                          check=True, capture_output=True).stdout
     x = np.frombuffer(pcm, np.int16).astype(np.float32) / 32768

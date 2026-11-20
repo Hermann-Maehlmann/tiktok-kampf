@@ -1,0 +1,72 @@
+{
+ "id": "002-fridge",
+ "title": {
+  "sub": "KITCHEN TITLE · 12 ROUNDS"
+ },
+ "red": {
+  "name": "THE FRIDGE",
+  "look": {
+   "id": "fridge",
+   "object": "fridge",
+   "limbCol": "#2a2f36"
+  },
+  "stats": [
+   "WEIGHT: 200 KG OF COLD STEEL",
+   "HOBBY: HIDING YOUR LEFTOVERS"
+  ]
+ },
+ "blue": {
+  "name": "THE HUMAN",
+  "look": {
+   "id": "human",
+   "body": "human",
+   "skin": "light",
+   "hair": "wild",
+   "hairCol": "#4a3020",
+   "beard": true,
+   "trunksText": "HUNGRY"
+  },
+  "stats": [
+   "FRIDGE VISITS: 40 PER DAY",
+   "SECRET WEAPON: 3 AM HUNGER"
+  ]
+ },
+ "outro": [
+  [
+   "THE FRIDGE",
+   "red"
+  ],
+  [
+   "OUT COLD",
+   "white"
+  ],
+  [
+   "THE HUMAN",
+   "blue"
+  ],
+  [
+   "STILL HUNGRY",
+   "white"
+  ]
+ ],
+ "vo": {
+  "l01": "Tonight... the midnight snack war. Winner gets the last slice.",
+  "l02": "In the red corner... the fridge! Two hundred kilos of cold steel. It hums all night, it hides your leftovers behind the pickles, and it has never once said sorry.",
+  "l03": "And in the blue corner... the human! Opens the fridge forty times a day, stares for ten seconds, and still finds nothing to eat.",
+  "l04": "Fun fact: that fridge light only works when you're watching. Nobody knows what it does in the dark.",
+  "l05": "Ohh! Freezer burn! That one left ice cubes on his eyebrows!",
+  "l06": "But humans have something fridges never had... a three a.m. appetite.",
+  "l08": "Down goes the fridge! Big appliance down!",
+  "l10": "Your winner... the hungry human!",
+  "l11": "The fridge is out cold... which, honestly, is exactly how it likes it. And the leftovers? Gone before the bell.",
+  "l12": "Let's see that again... watch that uppercut. The door swings open, and the light finally goes out."
+ },
+ "caption": "Man vs. fridge 🥊🧊 Who wins the midnight snack war? 👇",
+ "hashtags": [
+  "#boxing",
+  "#whowouldwin",
+  "#fridge",
+  "#midnightsnack",
+  "#animation"
+ ]
+}
