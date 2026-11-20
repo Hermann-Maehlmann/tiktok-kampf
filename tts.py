@@ -12,12 +12,16 @@ VOICE = os.environ.get('VOICE', 'en-US-AndrewMultilingualNeural')
 RATES = [16, 21, 26, 31]  # percent faster (Hermann 20.11.2026: a bit faster than v3's +8%)
 COMMON = {'l12': "Let's see that again.", 'l13': "Who should fight next? Tell me in the comments!"}
 SR = 48000
+# edge-tts trusts only certifi's CAs; behind the cloud proxy it must trust the proxy CA bundle instead
+CA = os.environ.get('EDGE_TTS_CA', '/root/.ccr/ca-bundle.crt')
+EDGE = ([sys.executable, '-c', f"import sys,certifi;certifi.where=lambda:{CA!r};from edge_tts.util import main;sys.argv[0]='edge-tts';sys.exit(main())"]
+        if os.path.exists(CA) else ['edge-tts'])
 here = os.path.dirname(os.path.abspath(__file__))
 
 
 def synth(text, rate, base):
     for attempt in range(8):  # the TTS service drops connections now and then (NoAudioReceived)
-        r = subprocess.run(['edge-tts', '--voice', VOICE, f'--rate=+{rate}%', '--text', text,
+        r = subprocess.run(EDGE + ['--voice', VOICE, f'--rate=+{rate}%', '--text', text,
                             '--write-media', base + '.mp3', '--write-subtitles', base + '.vtt'], capture_output=True, text=True)
         if r.returncode == 0: break
         print(f'edge-tts failed (try {attempt + 1}): {r.stderr.strip().splitlines()[-1:]}', file=sys.stderr); time.sleep(3 * (attempt + 1))
