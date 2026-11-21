@@ -1,0 +1,85 @@
+{
+ "id": "003-zombie",
+ "title": {
+  "sub": "UNDEAD TITLE · 12 ROUNDS"
+ },
+ "red": {
+  "name": "THE ZOMBIE",
+  "look": {
+   "id": "zombie",
+   "body": "slim",
+   "skin": "zombie",
+   "hair": "mohawk",
+   "hairCol": "#2e3320",
+   "trunksText": "BRAINS",
+   "eyeGlow": "#b8ff40",
+   "morph": 0.35
+  },
+  "stats": [
+   "DIET: STRICTLY BRAINS",
+   "TOP SPEED: 2 KM/H"
+  ]
+ },
+ "blue": {
+  "name": "THE HUMAN",
+  "look": {
+   "id": "human",
+   "body": "human",
+   "skin": "tan",
+   "hair": "short",
+   "hairCol": "#2a1a10",
+   "beard": false,
+   "trunksText": "ALIVE"
+  },
+  "stats": [
+   "ZOMBIE MOVIES WATCHED: ALL",
+   "SECRET WEAPON: CARDIO"
+  ]
+ },
+ "ring": {
+  "mat": [
+   "FIGHT NIGHT",
+   "UNDEAD TITLE FIGHT",
+   "@DAILY.FIGHT-NIGHT"
+  ],
+  "apron": "ZOMBIE vs HUMAN"
+ },
+ "outro": [
+  [
+   "THE ZOMBIE",
+   "red"
+  ],
+  [
+   "DEAD AGAIN",
+   "white"
+  ],
+  [
+   "THE HUMAN",
+   "blue"
+  ],
+  [
+   "BRAINS: INTACT",
+   "white"
+  ]
+ ],
+ "vo": {
+  "l01": "Tonight... the living versus the dead. Somebody please bring a shovel and some garlic.",
+  "l02": "In the red corner... the zombie! Strictly on a brains-only diet, top speed two kilometers an hour, and it has not showered since the apocalypse started.",
+  "l03": "And in the blue corner... the human! Has watched every zombie movie twice and still opens the basement door to check that weird noise.",
+  "l04": "Fun fact: zombies feel no pain. They also feel no shame about that outfit.",
+  "l05": "Ohh! The zombie bites! That was not a punch, that was lunch!",
+  "l06": "But humans have something zombies lost a long time ago... a working brain.",
+  "l08": "Down goes the zombie! Dead again, for the second time!",
+  "l10": "Your winner... the living, breathing human!",
+  "l11": "The zombie is out cold, which, to be fair, is just its normal body temperature. Don't worry, it'll be back up by Monday.",
+  "l12": "Let's see that again... watch the uppercut. The jaw goes left, the arm goes right, and no brain shows up."
+ },
+ "caption": "Human vs. zombie 🧟🥊 Who wins the undead title fight? 👇",
+ "hashtags": [
+  "#boxing",
+  "#whowouldwin",
+  "#zombie",
+  "#undead",
+  "#animation"
+ ]
+}
