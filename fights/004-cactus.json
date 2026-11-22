@@ -1,0 +1,80 @@
+{
+ "id": "004-cactus",
+ "title": {
+  "sub": "DESERT TITLE · 12 ROUNDS"
+ },
+ "red": {
+  "name": "THE HUMAN",
+  "look": {
+   "id": "human",
+   "body": "human",
+   "skin": "tan",
+   "hair": "short",
+   "hairCol": "#3a2414",
+   "beard": false,
+   "trunksText": "OUCH"
+  },
+  "stats": [
+   "PLANTS KEPT ALIVE: ZERO",
+   "SECRET WEAPON: CONFIDENCE"
+  ]
+ },
+ "blue": {
+  "name": "THE CACTUS",
+  "look": {
+   "id": "cactus",
+   "object": "cactus",
+   "limbCol": "#2f6a2a"
+  },
+  "stats": [
+   "SPINES: 4,000 AND COUNTING",
+   "WATER NEEDED: ONCE A MONTH"
+  ]
+ },
+ "ring": {
+  "mat": [
+   "FIGHT NIGHT",
+   "DESERT TITLE FIGHT",
+   "@DAILY.FIGHT-NIGHT"
+  ],
+  "apron": "HUMAN vs CACTUS"
+ },
+ "outro": [
+  [
+   "THE HUMAN",
+   "red"
+  ],
+  [
+   "FULL OF SPINES",
+   "white"
+  ],
+  [
+   "THE CACTUS",
+   "blue"
+  ],
+  [
+   "STILL UNTOUCHED",
+   "gold"
+  ]
+ ],
+ "vo": {
+  "l01": "Tonight... a man punches a cactus. What could possibly go wrong here?",
+  "l02": "In the red corner... the human! Has never kept a single houseplant alive, read zero instructions, and thinks boxing gloves make him totally invincible.",
+  "l03": "And in the blue corner... the cactus! Four thousand spines, drinks water once a month, has never lost a hug, and has never once moved out of the way.",
+  "l04": "Fun fact: a cactus can live two hundred years. This human might not survive two rounds.",
+  "l05": "Ohh! The human lands a big right hand... directly into the spines!",
+  "l06": "But the cactus has something humans never had... pure pointy defense.",
+  "l08": "Down goes the human! He hugged the cactus!",
+  "l10": "Your winner... the undefeated cactus!",
+  "l11": "The human is fine, folks. He just needs some tweezers, a long weekend, and maybe a nice plastic plant next time.",
+  "l12": "Let's see that again... every single punch he throws, the cactus just stands there and lets him hurt himself."
+ },
+ "caption": "Never punch a cactus 🌵🥊 Who did you think would win? 👇",
+ "hashtags": [
+  "#boxing",
+  "#whowouldwin",
+  "#cactus",
+  "#plantsoftiktok",
+  "#animation"
+ ]
+}
