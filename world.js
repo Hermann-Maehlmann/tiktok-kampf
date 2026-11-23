@@ -10,7 +10,7 @@ export const RING = { half: 3.1, floor: 0 };
 
 // labels: { mat: [big, middle, small], apron: 'RED vs BLUE' } (per fight, see scene.js)
 export function buildWorld(scene, labels = {}) {
-  const L = { mat: labels.mat || ['FIGHT NIGHT', 'WORLD TITLE FIGHT', '@DAILY.FIGHT-NIGHT'], apron: labels.apron || 'FIGHT NIGHT' };
+  const L = { mat: (labels.mat || ['FIGHT NIGHT', 'WORLD TITLE FIGHT', '@DAILY.FIGHTNIGHT']).map(x => x.replace(/@DAILY\.FIGHT-NIGHT/i, '@DAILY.FIGHTNIGHT')), apron: labels.apron || 'FIGHT NIGHT' };
   const W = {};
   scene.background = new THREE.Color(0x020204);
   scene.fog = new THREE.FogExp2(0x07080d, .045);

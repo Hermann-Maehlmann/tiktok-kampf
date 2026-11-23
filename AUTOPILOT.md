@@ -1,7 +1,7 @@
 # TikTok-Autopilot „Kampf“ (1 Video pro Tag)
 
 Eine geplante Aufgabe startet jeden Tag eine frische Claude-Sitzung, die diesen Ablauf genau einmal durchläuft.
-Format: 3D-Boxkampf ~68 s, „Mensch gegen irgendwas“. Englische Stimme (edge-tts), englische Texte.
+Format: 3D-Boxkampf ~70,7 s (2,2 s Cold Open + 68,5 s Kampf), „Mensch gegen irgendwas“. Englische Stimme (edge-tts), englische Texte.
 
 ## Ablauf
 1. **Vorbereiten**
@@ -15,15 +15,16 @@ Format: 3D-Boxkampf ~68 s, „Mensch gegen irgendwas“. Englische Stimme (edge-
    - **Niemals echte Personen** (Politiker, Streamer, Promis), keine echten Marken oder Logos (Hermann 18.11.2026, TikTok-Regeln + Recht am eigenen Bild). Nur Typen ohne Namen.
    - Der Mensch steht meist in Blau und gewinnt. Etwa jedes 5. Video ein Überraschungssieg des Gegners: dann der Gegner in Blau, der Mensch in Rot.
    - **Stimme schneller, mehr Inhalt (Hermann 20.11.2026):** Jede `vo`-Zeile füllt 80–95 % ihres Slots (≈ 3,1 Wörter pro Sekunde), auch `l12` (Replay-Kommentar). Meldet `tts.py` „SHORT“, die Zeile mit einem Fakt oder Witz verlängern und `make_video.sh` neu starten.
+   - **Cold Open (Hermann 23.11.2026):** `hook` = 2 Zeilen große Frage über der Zeitlupe in den ersten 2 s, z. B. `["CAN A HUMAN", "BEAT A TOASTER?"]`, und `vo.l00` spricht genau diese Frage. Nicht verraten, wer gewinnt.
    - Witzig, englisch. Stats und Outro mit Pointe. `l11` ist die stärkste Pointe. Jede `vo`-Zeile unter ihrer Maximallänge.
    - Datei `fights/<nr>-<slug>.json` (`nr` = laufende Nummer, 3-stellig).
-3. **Vorschau prüfen**: `FIGHT=fights/<datei>.json node render.js preview/<id> stills 2 7 17 28.5 40.3 49 60.6 66.8` und jedes Bild ansehen: Gegner erkennbar und lustig? Augen frei (nichts von Hut/Helm verdeckt)? Texte lesbar, nichts abgeschnitten? Sonst Look ändern und neu prüfen (max. 3 Runden).
+3. **Vorschau prüfen**: `FIGHT=fights/<datei>.json node render.js preview/<id> stills 0.4 1.8 4.2 9.2 19.2 30.7 42.5 51.2 62.8 69` (Zeiten inkl. 2,2 s Cold Open) und jedes Bild ansehen: Gegner erkennbar und lustig? Augen frei (nichts von Hut/Helm verdeckt)? Hook-Text in den ersten Bildern groß und lesbar? Texte lesbar, nichts abgeschnitten? Sonst Look ändern und neu prüfen (max. 3 Runden).
 4. **Rendern**: `./make_video.sh fights/<datei>.json` (Stimme → Ton → Bilder → Video, ca. 35–45 Min, im Hintergrund starten).
    - Bricht `tts.py` mit „TOO LONG“ ab: die genannte Zeile kürzen und neu starten.
-   - Abnahme: `ffprobe` Dauer ≈ 68,5 s. 8 Bilder ziehen (`ffmpeg -i build/<id>/<id>.mp4 -vf "fps=8/68.5,scale=270:-1,tile=8x1" -frames:v 1 check.png`) und ansehen. Kaputt/schwarz → nicht posten, melden.
+   - Abnahme: `ffprobe` Dauer ≈ 70,7 s. 8 Bilder ziehen (`ffmpeg -i build/<id>/<id>.mp4 -vf "fps=8/70.7,scale=270:-1,tile=8x1" -frames:v 1 check.png`) und ansehen. Kaputt/schwarz → nicht posten, melden.
 5. **Ablegen**: `bash autopilot/host.sh upload build/<id>/<id>.mp4` → öffentliche URL.
 6. **In Metricool einplanen** (`createScheduledPost`)
-   - Marke: **8253235** („fight night“, TikTok @daily.fight-night, Zeitzone Europe/Berlin).
+   - Marke: **8253235** („fight night“, TikTok @daily.fightnight, Zeitzone Europe/Berlin).
    - Uhrzeit: **19:00 Europe/Berlin** am selben Tag (ist es schon nach 18:40, dann am nächsten Tag 19:00). Ist an diesem Tag schon ein Post eingeplant (`getScheduledPosts`), den nächsten Tag ohne Post nehmen, höchstens 3 Tage im Voraus; sind alle belegt, nichts einplanen und melden.
    - `info`: `{"text": <Caption>, "providers":[{"network":"tiktok"}], "media":[<URL>], "publicationDate":{"dateTime":"YYYY-MM-DDT19:00:00","timezone":"Europe/Berlin"}, "autoPublish": true, "draft": <MODUS>, "tiktokData":{"privacyOption":"PUBLIC_TO_EVERYONE","isAigc":false,"title":<Titel>}, "firstCommentText":"Who should fight next? 👇", "descendants":[], "shortener":false, "smartLinkData":{"ids":[]}, "hasNotReadNotes":false, "mediaAltText":[]}`
    - **MODUS (Hermann 18.11.2026: sofort automatisch):** `draft: false`, wenn Vorschau (Schritt 3) und Abnahme (Schritt 4) bestanden sind. Nur wenn nach 3 Runden noch ein klarer Fehler bleibt: `draft: true`, Datum nächster Tag 13:00, und in der Zusammenfassung sagen warum.
