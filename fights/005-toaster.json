@@ -1,0 +1,80 @@
+{
+ "id": "005-toaster",
+ "title": {
+  "sub": "BREAKFAST TITLE · 12 ROUNDS"
+ },
+ "red": {
+  "name": "THE TOASTER",
+  "look": {
+   "id": "toaster",
+   "object": "toaster",
+   "limbCol": "#3a3a3a"
+  },
+  "stats": [
+   "SETTINGS: 1 TO BURNT",
+   "SECRET WEAPON: THE POP-UP"
+  ]
+ },
+ "blue": {
+  "name": "THE HUMAN",
+  "look": {
+   "id": "human",
+   "body": "human",
+   "skin": "light",
+   "hair": "short",
+   "hairCol": "#6b4a2b",
+   "beard": true,
+   "trunksText": "BREAKFAST"
+  },
+  "stats": [
+   "TOAST BURNT: 3,000 SLICES",
+   "SECRET WEAPON: A BUTTER KNIFE"
+  ]
+ },
+ "ring": {
+  "mat": [
+   "FIGHT NIGHT",
+   "BREAKFAST TITLE FIGHT",
+   "@DAILY.FIGHT-NIGHT"
+  ],
+  "apron": "TOASTER vs HUMAN"
+ },
+ "outro": [
+  [
+   "THE TOASTER",
+   "red"
+  ],
+  [
+   "BURNT OUT",
+   "white"
+  ],
+  [
+   "THE HUMAN",
+   "blue"
+  ],
+  [
+   "BREAKFAST CHAMPION",
+   "gold"
+  ]
+ ],
+ "vo": {
+  "l01": "Tonight... the great breakfast war. Only one of them leaves this kitchen alive.",
+  "l02": "In the red corner... the toaster! Two slots, one dial, and zero mercy. It has burnt more bread than any bakery on Earth, and it pops up when you least expect it.",
+  "l03": "And in the blue corner... the human! Sets the dial to three, walks away for ten seconds, and comes back to pure charcoal, every morning.",
+  "l04": "Fun fact: toasters run at over three hundred degrees. That's hotter than this guy's mixtape.",
+  "l05": "Ohh! The toaster pops up a hot right hand! Crumbs everywhere!",
+  "l06": "But humans have something toasters never had... thumbs to pull the plug.",
+  "l08": "Down goes the toaster! It's toast, folks!",
+  "l10": "Your winner... the hungry, hungry human!",
+  "l11": "The toaster is unplugged and burnt out. And the human? He finally ate breakfast... and yes, it was still a little bit burnt.",
+  "l12": "Let's see that again... watch the uppercut. Ding! The toast pops out, and the toaster goes flying."
+ },
+ "caption": "Never trust a toaster 🍞🥊 Who wins the breakfast war? 👇",
+ "hashtags": [
+  "#boxing",
+  "#whowouldwin",
+  "#toaster",
+  "#breakfast",
+  "#animation"
+ ]
+}
