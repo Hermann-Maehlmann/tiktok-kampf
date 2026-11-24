@@ -1,0 +1,86 @@
+{
+ "id": "006-alien",
+ "title": {
+  "sub": "GALACTIC TITLE · 12 ROUNDS"
+ },
+ "red": {
+  "name": "THE ALIEN",
+  "look": {
+   "id": "alien",
+   "body": "slim",
+   "skin": "alien",
+   "hair": "bald",
+   "beard": false,
+   "hat": "antenna",
+   "hatCol": "#9be564",
+   "eyeGlow": "#7dff6a",
+   "trunksText": "AREA 51"
+  },
+  "stats": [
+   "DISTANCE TRAVELED: 4 LIGHT YEARS",
+   "SECRET WEAPON: THE PROBE"
+  ]
+ },
+ "blue": {
+  "name": "THE HUMAN",
+  "look": {
+   "id": "human",
+   "body": "human",
+   "skin": "brown",
+   "hair": "short",
+   "hairCol": "#1a120c",
+   "beard": false,
+   "trunksText": "EARTH"
+  },
+  "stats": [
+   "PLANETS VISITED: JUST THIS ONE",
+   "SECRET WEAPON: GRAVITY"
+  ]
+ },
+ "ring": {
+  "mat": [
+   "FIGHT NIGHT",
+   "GALACTIC TITLE FIGHT",
+   "@DAILY.FIGHT-NIGHT"
+  ],
+  "apron": "ALIEN vs HUMAN"
+ },
+ "outro": [
+  [
+   "THE ALIEN",
+   "red"
+  ],
+  [
+   "PHONED HOME",
+   "white"
+  ],
+  [
+   "THE HUMAN",
+   "blue"
+  ],
+  [
+   "EARTH DEFENDED",
+   "gold"
+  ]
+ ],
+ "vo": {
+  "l01": "Tonight, the fight for planet Earth. And no, you cannot run back to your spaceship.",
+  "l02": "In the red corner, the alien! It flew four light years to get here, it has three stomachs and two brains, and it still parked its spaceship in a cornfield.",
+  "l03": "And in the blue corner, the human! Has never left this planet, but has survived two hundred Monday mornings in a row.",
+  "l04": "Fun fact: aliens can read your mind. Bad news, this guy is thinking about pizza.",
+  "l05": "Ohh! The alien lands a laser jab! Where did that come from?",
+  "l06": "But humans have something aliens never had: Earth gravity, and a really bad temper.",
+  "l08": "Down goes the alien! Houston, we have a problem!",
+  "l10": "Your winner, the pride and joy of planet Earth!",
+  "l11": "The alien is going home in a tiny little ambulance saucer. And his one star review of Earth says: the locals punch way too hard.",
+  "l12": "Let's see that again. Look at that uppercut, the alien goes into orbit and never lands."
+ },
+ "caption": "Human vs. alien 👽🥊 Who defends planet Earth? Drop your pick 👇",
+ "hashtags": [
+  "#boxing",
+  "#whowouldwin",
+  "#alien",
+  "#ufo",
+  "#animation"
+ ]
+}
