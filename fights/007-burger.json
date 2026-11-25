@@ -1,0 +1,80 @@
+{
+ "id": "007-burger",
+ "title": {
+  "sub": "FAST FOOD TITLE · 12 ROUNDS"
+ },
+ "red": {
+  "name": "THE BURGER",
+  "look": {
+   "id": "burger",
+   "object": "burger",
+   "limbCol": "#c98a3a"
+  },
+  "stats": [
+   "WEIGHT: 2 PATTIES, 1 CHEESE",
+   "SECRET WEAPON: EXTRA SAUCE"
+  ]
+ },
+ "blue": {
+  "name": "THE HUMAN",
+  "look": {
+   "id": "human",
+   "body": "human",
+   "skin": "tan",
+   "hair": "short",
+   "hairCol": "#2b1d12",
+   "beard": false,
+   "trunksText": "HUNGRY"
+  },
+  "stats": [
+   "LAST MEAL: 20 MINUTES AGO",
+   "SECRET WEAPON: AN EMPTY STOMACH"
+  ]
+ },
+ "ring": {
+  "mat": [
+   "FIGHT NIGHT",
+   "FAST FOOD TITLE FIGHT",
+   "@DAILY.FIGHT-NIGHT"
+  ],
+  "apron": "BURGER vs HUMAN"
+ },
+ "outro": [
+  [
+   "THE BURGER",
+   "red"
+  ],
+  [
+   "EATEN ALIVE",
+   "white"
+  ],
+  [
+   "THE HUMAN",
+   "blue"
+  ],
+  [
+   "STILL HUNGRY",
+   "gold"
+  ]
+ ],
+ "vo": {
+  "l01": "Tonight... it's lunch time in the ring. And only one of these two fighters is on the menu.",
+  "l02": "In the red corner... the burger! Two juicy patties, melted cheese, and a pickle nobody asked for. It drips sauce on every shirt it has ever touched.",
+  "l03": "And in the blue corner... the human! Ate an hour ago, already hungry again, and he never, ever says no to extra fries.",
+  "l04": "Fun fact: this burger has more layers than this guy's personality, and way more cheese.",
+  "l05": "Ohh! The burger smacks him with a big greasy right hand! That's gonna stain!",
+  "l06": "But humans have something burgers never had... a big mouth, sharp teeth, and no shame.",
+  "l08": "Down goes the burger! Sauce everywhere!",
+  "l10": "Your winner... the very hungry human!",
+  "l11": "The burger came here to fight, but it left as a meal. And the human? He's already asking for dessert... with a large shake.",
+  "l12": "Let's see that again... watch the uppercut. The top bun flies, the pickle goes everywhere. Delicious."
+ },
+ "caption": "Lunch fights back 🍔🥊 Who wins: the burger or the hungry human? 👇",
+ "hashtags": [
+  "#boxing",
+  "#whowouldwin",
+  "#burger",
+  "#fastfood",
+  "#animation"
+ ]
+}
