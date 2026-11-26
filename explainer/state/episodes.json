@@ -1,1 +1,25 @@
-[{"datum":"2026-11-26","id":"001-stomach","thema":"Stomach digests itself","status":"test (nicht gepostet)","kling":true}]
+[
+ {
+  "datum": "2026-11-26",
+  "id": "001-stomach",
+  "thema": "Stomach digests itself",
+  "status": "test (nicht gepostet)",
+  "kling": true
+ },
+ {
+  "datum": "2026-11-26",
+  "id": "002-bones",
+  "thema": "Skeleton dissolves and rebuilds itself (bone remodeling)",
+  "fakten_quellen": [
+   "https://journals.sagepub.com/doi/10.1177/0004563218759371",
+   "https://www.ncbi.nlm.nih.gov/books/NBK45504",
+   "https://pmc.ncbi.nlm.nih.gov/articles/PMC2880220",
+   "https://www.nasa.gov/reference/risk-of-spaceflight-induced-bone-changes"
+  ],
+  "credits_ca": 3670,
+  "kling": true,
+  "status": "entwurf",
+  "geplant_fuer": "2026-11-27T19:00 Europe/Berlin",
+  "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=8253235&openWithPostUuid=2132574586220397362"
+ }
+]

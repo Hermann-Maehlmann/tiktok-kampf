@@ -1,0 +1,316 @@
+{
+ "voice": "voice.mp3",
+ "music": "../../music/track02.mp3",
+ "words": "words.json",
+ "tail": 1.6,
+ "living": true,
+ "captions": "phrase",
+ "scenes": [
+  {
+   "start": 0.0,
+   "image": "img/s01.png",
+   "color": "#ff3b5c",
+   "motion": "in",
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "video": "clips/v01.mp4",
+   "fx": {
+    "glow": 1.2
+   }
+  },
+  {
+   "start": 5.76,
+   "image": "img/s02.png",
+   "color": "#a8ff3e",
+   "motion": "in",
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "fx": {
+    "wobble": 6,
+    "glow": 1.2
+   }
+  },
+  {
+   "start": 13.52,
+   "image": "img/s03.png",
+   "color": "#ff5fd2",
+   "motion": "out",
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "fx": {
+    "wobble": 3,
+    "flicker": 1
+   }
+  },
+  {
+   "start": 18.48,
+   "image": "img/s04.png",
+   "color": "#3ee8ff",
+   "motion": "left",
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "fx": {
+    "breathe": 1.5,
+    "wobble": 2
+   }
+  },
+  {
+   "start": 23.92,
+   "image": "img/s05.png",
+   "color": "#ffd23f",
+   "motion": "in",
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "fx": {
+    "breathe": 1.2,
+    "glow": 1.1
+   }
+  },
+  {
+   "start": 31.92,
+   "image": "img/s06.png",
+   "color": "#ff8a1f",
+   "motion": "up",
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "fx": {
+    "wobble": 3,
+    "glow": 1.2
+   }
+  },
+  {
+   "start": 37.36,
+   "image": "img/s07.png",
+   "color": "#ffffff",
+   "motion": "right",
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "fx": {
+    "wobble": 6,
+    "glow": 1.2
+   }
+  },
+  {
+   "start": 42.2,
+   "image": "img/s08.png",
+   "color": "#3ee8ff",
+   "motion": "out",
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "fx": {
+    "breathe": 1.3,
+    "flicker": 1
+   }
+  },
+  {
+   "start": 50.72,
+   "image": "img/s09.png",
+   "color": "#ff3b5c",
+   "motion": "in",
+   "focus": [
+    0.5,
+    0.55
+   ],
+   "fx": {
+    "breathe": 1.4,
+    "wobble": 2
+   }
+  },
+  {
+   "start": 57.44,
+   "image": "img/s10.png",
+   "color": "#ffd23f",
+   "motion": "in",
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "fx": {
+    "glow": 1.3,
+    "breathe": 1.2
+   }
+  }
+ ],
+ "callouts": [
+  {
+   "at": 6.96,
+   "dur": 4.2,
+   "type": "label",
+   "text": "OSTEOCLAST",
+   "sub": "giant bone-eating cell, many nuclei",
+   "color": "#ff5fd2",
+   "pos": [
+    0.34,
+    0.17
+   ],
+   "target": [
+    0.42,
+    0.3
+   ]
+  },
+  {
+   "at": 12.2,
+   "dur": 3.0,
+   "type": "label",
+   "text": "HCl ACID",
+   "sub": "dissolves the bone mineral",
+   "color": "#a8ff3e",
+   "pos": [
+    0.6,
+    0.26
+   ],
+   "target": [
+    0.25,
+    0.64
+   ]
+  },
+  {
+   "at": 15.84,
+   "dur": 2.6,
+   "type": "label",
+   "text": "CATHEPSIN K",
+   "sub": "enzyme that digests collagen",
+   "color": "#ff5fd2",
+   "pos": [
+    0.5,
+    0.17
+   ],
+   "target": [
+    0.5,
+    0.52
+   ]
+  },
+  {
+   "at": 21.6,
+   "dur": 2.3,
+   "type": "label",
+   "text": "BLOOD-CELL COUSINS",
+   "sub": "born from the same marrow cells",
+   "color": "#3ee8ff",
+   "pos": [
+    0.5,
+    0.17
+   ],
+   "target": [
+    0.5,
+    0.42
+   ]
+  },
+  {
+   "at": 28.48,
+   "dur": 3.3,
+   "type": "label",
+   "text": "OSTEOBLASTS",
+   "sub": "builder cells lay down new bone",
+   "color": "#ffd23f",
+   "pos": [
+    0.38,
+    0.17
+   ],
+   "target": [
+    0.45,
+    0.3
+   ]
+  },
+  {
+   "at": 32.0,
+   "dur": 3.2,
+   "type": "stat",
+   "text": "MILLIONS",
+   "sub": "of remodeling sites, all at once",
+   "color": "#ff8a1f",
+   "pos": [
+    0.5,
+    0.17
+   ]
+  },
+  {
+   "at": 38.1,
+   "dur": 3.8,
+   "type": "label",
+   "text": "CALCIUM BANK",
+   "sub": "bone tops up your blood calcium",
+   "color": "#ffffff",
+   "pos": [
+    0.5,
+    0.3
+   ],
+   "target": [
+    0.5,
+    0.52
+   ]
+  },
+  {
+   "at": 45.3,
+   "dur": 4.6,
+   "type": "stat",
+   "text": "UP TO 1.5%",
+   "sub": "bone density lost per month in space",
+   "color": "#3ee8ff",
+   "pos": [
+    0.5,
+    0.17
+   ]
+  },
+  {
+   "at": 55.8,
+   "dur": 1.6,
+   "type": "label",
+   "text": "OSTEOPOROSIS",
+   "sub": "porous, fragile bone",
+   "color": "#ff3b5c",
+   "pos": [
+    0.5,
+    0.2
+   ],
+   "target": [
+    0.62,
+    0.58
+   ]
+  },
+  {
+   "at": 58.7,
+   "dur": 3.6,
+   "type": "stat",
+   "text": "~10% / YEAR",
+   "sub": "of your skeleton is replaced",
+   "color": "#ffd23f",
+   "pos": [
+    0.5,
+    0.17
+   ]
+  },
+  {
+   "at": 62.5,
+   "dur": 3.6,
+   "type": "label",
+   "text": "RENEWED",
+   "sub": "most of it every ~10 years",
+   "color": "#3ee8ff",
+   "pos": [
+    0.27,
+    0.27
+   ],
+   "target": [
+    0.47,
+    0.42
+   ]
+  }
+ ]
+}
