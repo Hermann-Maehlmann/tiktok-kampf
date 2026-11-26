@@ -6,7 +6,10 @@ EV = json.load(open('events.json'))
 FIGHT = json.load(open(os.environ.get('FIGHT', 'fights/v3.json')))
 OUT = os.environ.get('AUDIO_OUT', 'audio3.wav')
 RP = EV['replay']; ENDV = EV['endcard']
-SR = 48000; DUR = EV['dur']; N = int(SR * DUR)
+# cold open: the video starts EV['cold'] s before the main timeline; all event times below are main times
+OFF = EV.get('cold', 0); CHIT = EV.get('coldHit', 0) - OFF
+SR = 48000; DUR = EV['dur'] - OFF; TOT = EV['dur']; N = int(SR * TOT)
+def I(v): return max(0, int((v + OFF) * SR))
 rng = np.random.default_rng(7)
 WARP = [[0, 0], [12.6, 12.6], [12.85, 12.8], [14.4, 13.0], [14.9, 13.3], [16.0, 14.4], [18.4, 16.9], [19.9, 17.25], [20.2, 17.45], [21.3, 18.55], [22.0, 18.78], [24.6, 19.02], [25.3, 19.35], [27.3, 20.33], [28.0, 21.0], [34.2, 27.2]]
 def inv(a):
@@ -19,13 +22,13 @@ def spd(v):
         if v <= WARP[i][0]:
             v0, a0 = WARP[i-1]; v1, a1 = WARP[i]; return (a1 - a0) / (v1 - v0)
     return 1
-t = np.arange(N) / SR
+t = np.arange(N) / SR - OFF
 def bp(x, lo, hi, o=2): return sosfilt(butter(o, [lo, hi], 'band', fs=SR, output='sos'), x)
 def lp(x, f, o=2): return sosfilt(butter(o, f, 'low', fs=SR, output='sos'), x)
 def hp(x, f, o=2): return sosfilt(butter(o, f, 'high', fs=SR, output='sos'), x)
 def add(buf, sig, at, g=1.0):
-    i = int(at * SR); j = min(N, i + len(sig))
-    if i < N: buf[i:j] += sig[:j - i] * g
+    i = int((at + OFF) * SR); j = min(N, i + len(sig))
+    if 0 <= i < N: buf[i:j] += sig[:j - i] * g
 def env(n, a, d):  # attack/decay seconds
     tt = np.arange(n) / SR; return np.minimum(1, tt / max(a, 1e-4)) * np.exp(-tt / d)
 
@@ -42,7 +45,7 @@ def babble(nv, seed, pitch=(95, 260)):
     r = np.random.default_rng(seed); out = np.zeros(N)
     for k in range(nv):
         f0 = r.uniform(*pitch); pos = r.uniform(0, .5)
-        while pos < DUR:
+        while pos < TOT:
             L = r.uniform(.12, .45); n = int(L * SR); i = int(pos * SR)
             if i + n > N: break
             tt = np.arange(n) / SR
@@ -59,19 +62,20 @@ base = lp(base, 2500)
 mod = lp(rng.standard_normal(N), 3) ; mod = 1 + .6 * mod / np.abs(mod).max()
 level = np.full(N, .25)
 def ramp(v0, v1, l0, l1):
-    i0, i1 = int(v0 * SR), int(v1 * SR); level[i0:i1] = np.linspace(l0, l1, i1 - i0)
+    i0, i1 = I(v0), I(v1); level[i0:i1] = np.linspace(l0, l1, i1 - i0)
 level[:] = .22
 ramp(0, 1.5, .1, .3); ramp(23.4, 25.2, .3, .45)
+if OFF: level[:I(0)] = .12
 HITS = [(p['vh'], p['str'], p['kind'] if p['lands'] != 'block' else 'block') for p in EV['punches'] if p['lands'] != 'miss']
 for v, s, k in HITS:
-    i = int(v * SR); n = int(2.5 * SR)
+    i = I(v); n = int(2.5 * SR)
     if i < N:
         e = env(n, .15, 1.0 if s > 1 else .6) * s * .5
         level[i:i + n][:len(e[:N - i])] += e[:N - i]
 # slow-mo: crowd muffled (handled below by lowpass mix)
-ramp(47.4, 47.8, .45, 1.1); level[int(47.8 * SR):int(51 * SR)] = 1.0; ramp(51, 53, 1.0, .55); level[int(53 * SR):] = .55
+ramp(47.4, 47.8, .45, 1.1); level[I(47.8):I(51)] = 1.0; ramp(51, 53, 1.0, .55); level[I(53):] = .55
 # replay: muffled crowd, then roar on the replayed impact; end card: cheering
-level[int(RP['v0'] * SR):int(RP['upHit'] * SR)] = .3; ramp(RP['upHit'], RP['upHit'] + .4, .3, .9); level[int((RP['upHit'] + .4) * SR):int(RP['v1'] * SR)] = .9; level[int(ENDV * SR):] = .75
+level[I(RP['v0']):I(RP['upHit'])] = .3; ramp(RP['upHit'], RP['upHit'] + .4, .3, .9); level[I(RP['upHit'] + .4):I(RP['v1'])] = .9; level[I(ENDV):] = .75
 crowd = base * mod * level / np.abs(base).max() * 1.6
 # cheers/whistles on KO and win
 for k in range(14):
@@ -80,7 +84,7 @@ for k in range(14):
     add(crowd, w, v)
 # muffle crowd in slow motion
 sp = np.array(EV['speed']); spI = np.interp(t, np.arange(len(sp)) * .01, sp)
-slow = np.clip(1 - spI, 0, 1); slow = lp(slow, 4)
+slow = np.clip(1 - spI, 0, 1); slow[t < 0] = .8; slow = lp(slow, 4)
 crowd = crowd * (1 - .8 * slow) + lp(crowd, 400) * .8 * slow
 
 # ---------- sfx ----------
@@ -142,6 +146,13 @@ def bell(g=1):
 for k in range(3): add(sfx, bell(), 23.45 + k * .32)
 for k in range(5): add(sfx, bell(.8), 47.55 + k * .28)
 
+# ---------- cold open (hook) ----------
+if OFF:
+    for v in [-OFF + .05, -OFF + .83]: add(sfx, thump(55, 38, .3, .6), v); add(sfx, thump(50, 36, .25, .45), v + .22)
+    add(sfx, whoosh(.6, .55, 300, 1200), CHIT - .55)
+    add(sfx, S(thump(90, 32, 2.2, 1.3), crack(.35, .55, 200, 3000), thump(240, 60, .5, .6)), CHIT)
+    n = int(OFF * SR); tt = np.arange(n) / SR
+    add(sfx, (np.sin(2 * np.pi * 41 * tt) + .5 * np.sin(2 * np.pi * 61.5 * tt)) * np.minimum(1, tt / .05) * np.clip((OFF - tt) / .3, 0, 1) * .12, -OFF)
 # ---------- music / hits ----------
 def kick(g=1): return thump(120, 45, .45, g)
 def snare(g=1): n = int(.25 * SR); return S(bp(rng.standard_normal(n), 1500, 8000) * env(n, .001, .06) * .7, np.sin(2 * np.pi * 190 * np.arange(n) / SR) * env(n, .001, .05) * .4) * g
@@ -151,6 +162,9 @@ def braam(dur, g):
         ph = 2 * np.pi * f * tt; x += np.sign(np.sin(ph)) * .3 + np.sin(ph)
     return lp(x, 900) * env(n, .03, dur / 2.5) * g * .12
 for v in [.7, 1.25, 1.8]: add(music, S(kick(1.2), braam(1.8, 1)), v)
+if OFF:
+    for v in [-OFF + .08, -OFF + .5]: add(music, S(kick(1.3), braam(1.2, .9)), v)
+    add(music, S(kick(1.6), braam(2.0, 1.4)), CHIT)
 add(music, braam(2.5, 1.0), 6.0); add(music, braam(2.5, .9), 16.3)
 add(music, S(kick(1.4), braam(1.5, 1.2)), 23.45)
 for v in [45.7, 46.35, 47.0]: add(music, S(kick(1.3), snare(.6)), v)
@@ -200,7 +214,7 @@ voice = np.tanh(voice * 2.2) / np.tanh(2.2)                  # gentle compressio
 venv = lp(np.abs(voice), 6); venv = np.clip(venv / (venv.max() + 1e-9) * 4, 0, 1)
 duck = 1 - .55 * venv
 mix = verb(sfx, .5) * 1.0 + verb(crowd, .3) * .55 * duck + verb(music, .25) * .8 * duck + verb(voice, .1) * 1.6
-fade = np.clip((DUR - t) / .6, 0, 1) * np.clip(t / .3, 0, 1)
+fade = np.clip((DUR - t) / .6, 0, 1) * np.clip((t + OFF) / .02, 0, 1)
 mix *= fade
 mix = np.tanh(mix / np.abs(mix).max() * 2.2) * .89
 st = np.stack([mix, verb(mix, .0)], 1)

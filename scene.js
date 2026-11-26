@@ -8,7 +8,7 @@ import { Fighter, makeSpec } from './fighter.js';
 import { loadHeadAssets } from './head.js';
 await loadHeadAssets();
 import { buildWorld, updateWorld } from './world.js';
-import { warp, speed, roots, pose, HITS, PUNCHES, ss, clamp, lerp, DURATION, actionTime, REPLAY, ENDCARD, VO_SLOTS } from './choreo.js';
+import { warp, speed, roots, pose, HITS, PUNCHES, ss, clamp, lerp, DURATION, actionTime, REPLAY, ENDCARD, VO_SLOTS, COLD, COLD_HIT, coldAction } from './choreo.js';
 const FIGHT = await (await fetch(new URLSearchParams(location.search).get('fight') || '/fights/v3.json')).json();
 const SPECIES = { erectus: makeSpec(FIGHT.red.look, 'red'), sapiens: makeSpec(FIGHT.blue.look, 'blue') };
 const COLS = { red: '#ff3b2f', blue: '#3d7bff', white: '#ffffff', gold: '#ffd34d' };
@@ -213,6 +213,16 @@ function overlay(v) {
     wrapTxt(str, 1190, a);
   }
 }
+// cold open: big question over the slow-motion uppercut (fight file `hook`: [line1, line2])
+const bare = n => n.replace(/^THE /, ''), art = n => (/^[AEIOU]/.test(n) ? 'AN ' : 'A ') + n;
+const HUMAN = [FIGHT.red, FIGHT.blue].find(f => /HUMAN/.test(f.name));
+const OPP = HUMAN === FIGHT.red ? FIGHT.blue : FIGHT.red;
+const HOOK = FIGHT.hook || (HUMAN ? ['CAN A HUMAN', `BEAT ${art(bare(OPP.name))}?`] : [`${bare(FIGHT.red.name)} vs`, `${bare(FIGHT.blue.name)}?`]);
+function coldOverlay(t) {
+  const sh = imp(t, COLD_HIT, .08) * 26;
+  txt(HOOK[0], W / 2 + n1(t * 40) * sh, 430 + n1(t * 40 + 5) * sh, 128, 'IDB', '#ffffff', { sc: slam(t, .08), a: ss(.08, .12, t), stroke: 12, maxW: 1000 });
+  txt(HOOK[1], W / 2 + n1(t * 40 + 9) * sh, 590 + n1(t * 40 + 13) * sh, 128, 'IDB', '#ffd34d', { sc: slam(t, .5), a: ss(.5, .54, t), stroke: 12, maxW: 1000 });
+}
 const SUBS = [];
 for (const k in VO_SLOTS) { const c = FIGHT.cues?.[k]; if (!c) continue; for (const [a, b, t] of c) SUBS.push([VO_SLOTS[k].t + a - .03, VO_SLOTS[k].t + b + .05, t]); }
 SUBS.push([45.7, 47.4, 'Eight... nine... ten!']);
@@ -262,8 +272,10 @@ function applyFighter(F, who, a, R) {
   F.apply(P, O.head.getWorldPosition(V()));
 }
 
-window.frame = (v, q = .93) => {
-  const a = actionTime(v), R = roots(a);
+const coldShot = (t) => { const k = t / COLD, h = hd(E), R = roots(coldAction(t)), mid = (R.E.x + R.S.x) / 2; const z = SPECIES.erectus.object ? 1.25 : 1; return { pos: V(lerp(mid - .45, mid - .1, k), lerp(.85, .95, k), lerp(-2.15, -1.8, k) * z), look: V(lerp(h.x + .2, mid, .3), h.y - .2, 0), fov: 32 }; };
+window.frame = (t, q = .93) => {
+  const cold = t < COLD, v = cold ? 40.5 : t - COLD;   // cold open borrows the slow-mo look of the fight
+  const a = cold ? coldAction(t) : actionTime(v), R = roots(a);
   applyFighter(E, 'E', a, R); applyFighter(S, 'S', a, R);
   let hype = .3 + .4 * ss(25.2, 25.8, v) + .3 * ss(47.4, 47.8, v);
   for (const h of HITS) hype = Math.max(hype, Math.min(1, imp(a, h.th, .6) * h.str));
@@ -275,7 +287,7 @@ window.frame = (v, q = .93) => {
   flashSpr.visible = fl > .02; if (flPos) { flashSpr.position.copy(flPos); flashSpr.scale.setScalar(.25 + fl * .35); flashSpr.material.opacity = Math.min(.6, fl * .5); world.flash.position.copy(flPos); }
   world.flash.intensity = fl * 1.0;
   // camera
-  const sh = SH.find(s => v >= s.v0 && v < s.v1) || SH[SH.length - 1];
+  const sh = cold ? { fn: () => coldShot(t) } : SH.find(s => v >= s.v0 && v < s.v1) || SH[SH.length - 1];
   const k = (v - sh.v0) / (sh.v1 - sh.v0);
   E.group.updateMatrixWorld(true); S.group.updateMatrixWorld(true);
   const c = sh.fn(v, a, k);
@@ -288,7 +300,7 @@ window.frame = (v, q = .93) => {
   const look = c.look.clone().add(V(n1(v * 23) * shake * .03, n1(v * 21 + 3) * shake * .03, n1(v * 19 + 7) * shake * .02));
   camera.fov = c.fov - shake * 1.5; camera.updateProjectionMatrix(); camera.lookAt(look);
   // grade
-  const inRep = v >= REPLAY.v0 && v < REPLAY.v1;
+  const inRep = cold || (v >= REPLAY.v0 && v < REPLAY.v1);
   const slow = inRep ? .6 : 1 - clamp(speed(v));
   grade.uniforms.uTime.value = v;
   grade.uniforms.uAb.value = Math.min(.5, shake * .22) + slow * .05;
@@ -296,17 +308,18 @@ window.frame = (v, q = .93) => {
   flash = Math.max(flash, imp(a, 20.3, .03) * .25);
   grade.uniforms.uFlash.value = flash;
   grade.uniforms.uSat.value = inRep ? .55 : 1 - slow * .25;
-  if (inRep) grade.uniforms.uFlash.value = Math.max(grade.uniforms.uFlash.value, (1 - ss(REPLAY.v0, REPLAY.v0 + .25, v)) * .8);
+  if (inRep && !cold) grade.uniforms.uFlash.value = Math.max(grade.uniforms.uFlash.value, (1 - ss(REPLAY.v0, REPLAY.v0 + .25, v)) * .8);
+  if (cold) { grade.uniforms.uSat.value = .8; grade.uniforms.uFlash.value = Math.max(grade.uniforms.uFlash.value, imp(t, COLD_HIT, .04) * .7); }
   grade.uniforms.uRed.value = 0;
   bloom.strength = .32 + slow * .2;
   const D = window.DBG || {}; if (D.noSpr) flashSpr.visible = false; if (D.noSweat) { sweat.count = 0; blood.count = 0; } if (D.noLight) world.flash.intensity = 0; if (D.noGrade) grade.uniforms.uFlash.value = 0;
   composer.render();
   g.clearRect(0, 0, W, H); g.drawImage(glCanvas, 0, 0);
-  overlay(v);
-  // fade in/out
-  const fade = Math.max(1 - ss(0, .5, v), ss(DURATION - .5, DURATION, v));
+  if (cold) coldOverlay(t); else overlay(v);
+  // cold open: hard start, dip to black into the title; fade out at the very end
+  const fade = cold ? ss(COLD - .2, COLD, t) : Math.max(1 - ss(0, .3, v), ss(DURATION - .5, DURATION, v));
   if (fade > 0) { g.fillStyle = `rgba(0,0,0,${fade})`; g.fillRect(0, 0, W, H); }
   return out.toDataURL('image/jpeg', q);
 };
-window.DURATION = DURATION;
+window.DURATION = DURATION + COLD;
 document.fonts.ready.then(() => Promise.all(['IDB', 'IDK', 'IB'].map(f => document.fonts.load(`40px ${f}`)))).then(() => { window.READY = true; });

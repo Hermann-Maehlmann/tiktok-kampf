@@ -53,7 +53,7 @@ def speak(key, text, slot, outdir):
         if dur <= slot['max']:
             write_wav(os.path.join(outdir, key + '.wav'), x)
             print(f'{key}: {dur:.2f}s / max {slot["max"]}s (+{rate}%)')
-            if dur < .75 * slot['max'] and key not in COMMON: print(f'  SHORT: {key} fills only {dur / slot["max"]:.0%} of its slot. Add a fact or joke so the video has no dead air.')
+            if dur < .75 * slot['max'] and key not in COMMON and key != 'l00': print(f'  SHORT: {key} fills only {dur / slot["max"]:.0%} of its slot. Add a fact or joke so the video has no dead air.')
             return cues
     sys.exit(f'TOO LONG: {key} is {dur:.2f}s even at +{RATES[-1]}% (max {slot["max"]}s). Shorten: "{text}"')
 

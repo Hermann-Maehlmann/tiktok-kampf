@@ -27,6 +27,14 @@ export function speed(v) { const d = (warp(v + .03) - warp(v)) / .03; return d <
 export const REPLAY = { v0: 58.4, cut: 62.2, v1: 65.2 };
 export const ENDCARD = { v0: 65.2 };
 export const DURATION = 68.5;
+// cold open (hook): video starts with COLD seconds of slow-motion uppercut + question text, then the timeline above.
+// All times in this file are "main" times; video time = main time + COLD.
+export const COLD = 2.2;
+export const COLD_HIT = 1.75;                     // impact inside the cold open (video time)
+export function coldAction(t) {                   // cold-open video time -> action time
+  const A0 = 18.30, AH = 18.86;                   // uppercut wind-up -> hit
+  return t < COLD_HIT ? A0 + (AH - A0) * Math.pow(t / COLD_HIT, 1.4) : AH + (t - COLD_HIT) * .12;
+}
 const RWARP = [[58.4, 18.25], [59.6, 18.7], [61.2, 18.95], [62.6, 19.6], [63.8, 20.35], [65.2, 21.2]];
 export function actionTime(v) {
   if (v >= REPLAY.v0 && v < REPLAY.v1) { for (let i = 1; i < RWARP.length; i++) if (v <= RWARP[i][0]) { const [v0, a0] = RWARP[i - 1], [v1, a1] = RWARP[i]; return a0 + (a1 - a0) * (v - v0) / (v1 - v0); } }
@@ -38,6 +46,7 @@ export function replayV(a) { for (let i = 1; i < RWARP.length; i++) if (a <= RWA
 export const VO_SLOTS = {
   l01: { t: .3, max: 4.4 }, l02: { t: 5.0, max: 9.9 }, l03: { t: 15.3, max: 8.0 }, l04: { t: 24.0, max: 5.2 }, l05: { t: 29.3, max: 4.3 },
   l06: { t: 33.7, max: 4.6 }, l08: { t: 42.9, max: 2.6 }, l10: { t: 48.3, max: 2.2 }, l11: { t: 50.6, max: 7.6 }, l12: { t: 58.5, max: 5.2 }, l13: { t: 65.5, max: 2.8 },
+  l00: { t: -COLD + .12, max: 1.75 },             // hook question in the cold open
 };
 
 // ---------------- root paths (world) ----------------
