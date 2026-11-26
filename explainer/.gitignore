@@ -1,0 +1,5 @@
+episodes/*/out.mp4
+episodes/*/img/
+episodes/*/clips/
+episodes/*/*.jpg
+__pycache__/
